@@ -1,28 +1,20 @@
-async function fetchData() {
-  try {
-    const locRes = await fetch('https://ipapi.co/json/');
-    const loc = await locRes.json();
-    const lat = loc.latitude;
-    const lon = loc.longitude;
-    document.getElementById("location").textContent = `Location: ${loc.city}, ${loc.region}`;
 
-    const aqiRes = await fetch(`https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&hourly=pm2_5`);
-    const aqi = await aqiRes.json();
-    const pm25 = aqi.hourly.pm2_5[0];
-    document.getElementById("aqi").textContent = `AQI (PM2.5): ${pm25}`;
-    document.getElementById("health").textContent = pm25 <= 50 ? "Health Tips: Air quality is Good" : (pm25 <= 100 ? "Health Tips: Moderate" : "Health Tips: Poor air quality - Limit outdoor activity");
-
-    const fireRes = await fetch("https://firms.modaps.eosdis.nasa.gov/mapserver/wfs.cgi?SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&TYPENAME=fires_modis_24&OUTPUTFORMAT=application/json&SRSNAME=EPSG:4326");
-    const fireData = await fireRes.json();
-    const nearby = fireData.features.filter(f => {
-      const [fLon, fLat] = f.geometry.coordinates;
-      return Math.abs(fLat - lat) < 1 && Math.abs(fLon - lon) < 1;
-    });
-    document.getElementById("fire-alerts").textContent = `Nearby Fire Alerts: ${nearby.length}`;
-  } catch (e) {
-    console.error(e);
-    document.getElementById("aqi").textContent = "AQI: Error";
-    document.getElementById("fire-alerts").textContent = "Fire Alerts: Error";
-  }
+function switchTab(tabId) {
+  document.querySelectorAll(".tab").forEach(tab => {
+    tab.classList.remove("active");
+  });
+  document.getElementById(tabId).classList.add("active");
 }
-fetchData();
+
+function changeLanguage() {
+  const lang = document.getElementById("language").value;
+  alert("Language changed to: " + lang + " (Functionality coming soon)");
+}
+
+// Simulated fetch of air quality data
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("location").innerText = "Karimnagar, Telangana";
+  document.getElementById("pollutants").innerText = "PM2.5: 57 | PM10: 120 | CO: 0.6 | NO2: 30 | SO2: 8 | O3: 22";
+  document.getElementById("suggestions").innerText = "Avoid outdoor activity | Wear a mask | Use air purifier";
+  document.getElementById("health-tips").innerText = "Asthmatic? Stay indoors. Elderly should reduce exertion.";
+});

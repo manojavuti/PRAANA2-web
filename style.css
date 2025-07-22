@@ -1,0 +1,49 @@
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #eef1f5;
+}
+header {
+  background: #002c60;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+.isro-logo {
+  height: 60px;
+  float: left;
+  margin-right: 1rem;
+}
+main {
+  padding: 1rem;
+}
+.map-box {
+  height: 300px;
+  width: 100%;
+  background: #ccc;
+}
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #003366;
+  display: flex;
+  justify-content: space-around;
+}
+.bottom-nav button {
+  flex: 1;
+  padding: 1rem;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+}
+.tab { display: none; }
+.tab.active { display: block; }
+footer {
+  padding: 1rem;
+  text-align: center;
+  background: #002c60;
+  color: white;
+}

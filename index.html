@@ -1,34 +1,55 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PRAANA - Air & Fire Monitoring</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="style.css"/>
+  <script defer src="script.js"></script>
 </head>
 <body>
   <header>
+    <img src="isro.jpg" alt="ISRO Logo" class="isro-logo" />
     <h1>PRAANA - Air & Fire Monitoring</h1>
-    <nav>
-      <a href="#">Dashboard</a>
-      <a href="#">Satellite</a>
-      <a href="#">Settings</a>
-    </nav>
   </header>
 
-  <main>
-    <section class="card">
-      <h2 id="location">Fetching Location...</h2>
-      <p id="aqi">AQI (PM2.5): Loading...</p>
-      <p id="health">Health Tips: --</p>
-      <p id="fire-alerts">Fire Alerts: Fetching...</p>
+  <nav class="bottom-nav">
+    <button onclick="switchTab('dashboard')">🏠 Dashboard</button>
+    <button onclick="switchTab('map')">🗺️ Map</button>
+    <button onclick="switchTab('health')">🧠 Health</button>
+    <button onclick="switchTab('settings')">⚙️ Settings</button>
+  </nav>
+
+  <main id="main-content">
+    <section id="dashboard" class="tab active">
+      <h2>Live Air Quality</h2>
+      <p id="location">Fetching Location...</p>
+      <p id="pollutants">Loading pollutants...</p>
+      <p id="suggestions">AI Suggestions will appear here.</p>
+    </section>
+
+    <section id="map" class="tab">
+      <h2>Live Map View</h2>
+      <div id="map" class="map-box"></div>
+    </section>
+
+    <section id="health" class="tab">
+      <h2>AI Health Tips</h2>
+      <p id="health-tips">Loading personalized suggestions...</p>
+    </section>
+
+    <section id="settings" class="tab">
+      <h2>Settings</h2>
+      <label for="language">Language:</label>
+      <select id="language" onchange="changeLanguage()">
+        <option value="en">English</option>
+        <option value="hi">हिन्दी</option>
+        <option value="te">తెలుగు</option>
+      </select>
     </section>
   </main>
 
-  <footer>
-    <p>Powered by PRAANA | 100% Free & Real-Time</p>
-  </footer>
-
-  <script src="script.js"></script>
+  <footer>Powered by <b>ISRO (India)</b> | 100% Free | Real-Time</footer>
 </body>
 </html>
